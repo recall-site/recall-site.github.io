@@ -1,107 +1,347 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="RECALL: a desktop application that detects conflicts in multi-party electronic contracts written in RCL.">
+  <title>RECALL - Contract Language Analyser</title>
+  <link rel="stylesheet" href="stylesheets/stylesheet.css">
+  <script src="javascripts/main.js" defer></script>
+</head>
+<body>
 
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Recall-contracts : RelativizEd ContrAct Language anaLyser">
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-    <script src="javascripts/main.js" type="text/javascript"></script>
-    <title>Recall - Relativized Contract Language Analyser</title>
-  </head>
-
-  <body>
-
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/recall-site/recall-site.github.io">View source code on GitHub</a>
-          <h1 id="project_title">RECALL</h1>
-          <h2 id="project_tagline">Relativized Contract Language Analyser</h2>
-
-            <section id="downloads">
-               <a class="bin_download_link"  href="https://github.com/adilsonbonifacio/recall/raw/master/bin/recall-v1.1.tgz">
-               Download RECALL tool
-               </a>
-            </section>
-        </header>
+  <header class="nav">
+    <div class="container">
+      <a class="brand" href="index.html"><span class="brand-mark">R</span> RECALL</a>
+      <button class="icon-btn menu-btn" aria-label="Open menu" aria-expanded="false">☰</button>
+      <nav class="nav-links">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="index.html#installation">Installation</a>
+        <a href="documentation.html">Documentation</a>
+        <a href="examples.html">Examples</a>
+        <button class="icon-btn" data-theme-toggle aria-label="Toggle theme">◐</button>
+        <a class="nav-cta" href="#download">Download</a>
+      </nav>
     </div>
+  </header>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-         <h3>
-            <a id="intro" class="anchor" href="#intro" aria-hidden="true">
-            <span aria-hidden="true" class="octicon octicon-link"></span></a>
-            Introduction to RECALL Tool
-         </h3>
-         <p class="section-text">
-            Nowadays, contracts has an important role in business where trade relationships between different parties are dictated by legal rules.
-            The concept of electronic contracts has arisen mostly due to technological advances and most frequent practice of electronic trading between companies and customers.
-            Therewith new challenges have emerged to guarantee reliability between the stakeholders in the electronic negotiations.
-            The automatic verification of electronic contracts has arisen as a new challenge  especially in the task of detecting conflicts in multi-party contracts.
-            The problem of checking contracts has been largely addressed in the literature, but only few works have dealt with multi-party contracts.
-            The RECALL tool is an automatic checker for finding conflicts on multi-party contracts modeled by the relativized contract language.
-            The modeling and automatic checking of the contract  allow us to ascertain important results on its business model.
-         </p>
-
-         <h3>
-            <a id="tecnologies" class="anchor" href="#tecnologies" aria-hidden="true">
-            <span aria-hidden="true" class="octicon octicon-link"></span></a>
-            Technologies and architecture
-         </h3>
-         <p class="section-text">
-            <p class="section-text">
-               We have developed the RECALL tool based on the conflict detection algorithm proposed by Della Mura and Bonifácio <sup><a href="#bib1">1</a></sup>.
-               The RECALL tool has been mainly developed in <a href="http://www.oracle.com/technetwork/pt/java/javase/overview/index.html" target="_blank">Java SE</a> and supported by some libraries such as <a href="http://www.antlr.org/" target="_blank">ANTLR</a> to generate the grammar syntax and <a href="https://commons.apache.org/proper/commons-cli/" target="_blank">Apache Commons CLI</a> to setting the configuration file in the interface module.
-               Some operations of set theory was optimized by applying the <a href="https://github.com/google/guava" target="_blank">Guava library</a> on the Automaton Construction and Conflict Analysis modules.
-               Aiming to yield a graphical representation of the generated automaton we have also used the <a href="http://www.graphviz.org/" target="_blank">Graphviz library</a>.
-            </p>
-            <p class="section-text">
-               The follow figure presents the tool's architecture composed by the implemented modules and their relationships.
-               <div style="margin: 0 auto; width: 80%; text-align: center;">
-                  <a href="images/modules.png" target="_blank"><img src="images/modules.png" style="width: 70%;"/></a>
-               </div>
-            </p>
-            <p class="section-text">
-               The Command Line Interface module corresponds to the user interaction with the tool, where settings for the contract analysis are given to the tool.
-               The Contract Representation module states the contract data to be processed by the tool using the RCL syntax.
-               Finally, the Conflict Analysis module aims at finding conflicts for all decompositions obtained in the automaton construction.
-               The Automaton Construction module accomplishes the construction of an automaton that models the contract described in RCL.
-            </p>
-         </p>
-
-         <h3>
-            <a id="support" class="anchor" href="#support-or-contact" aria-hidden="true">
-            <span aria-hidden="true" class="octicon octicon-link"></span></a>
-            Documentation and support
-         </h3>
-         <p class="section-text">
-            <p class="section-text">
-               The tool's documentation</a> contains information about the command-line parameters as well a complete description of the RCL language syntax for building contracts and subsequent verification using this tool.
-            </p>
-            <p class="section-text">
-               In addition, we provide some <a href="https://github.com/recall-site/contracts/" target="_blank">examples</a> of contracts written in RCL to facilitate their understanding.
-            </p>
-            <p class="section-text">
-               If you have any questions, suggestions or find any problems (or bugs) in RECALL Tool, please contact us at
-               <script type="text/javascript">
-                  gen_mail_to_link('adilsonbonifacio','gmail.com','contact us');
-               </script>
-               <noscript>
-                  <em>Email address protected by JavaScript. Activate JavaScript to see the email.</em>
-               </noscript>
-
-            </p>
-         </p>
-      </section>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="container">
+      <span class="eyebrow">Version 1.0.3 · Windows, macOS and Linux</span>
+      <h1><span>RECALL</span></h1>
+      <p class="lead">
+        <strong>Rel</strong>ativized <strong>C</strong>ontr<strong>A</strong>ct <strong>L</strong>anguage ana<strong>L</strong>yser.
+        A desktop application that finds normative conflicts in multi-party electronic contracts.
+      </p>
+      <div class="hero-actions">
+        <a id="hero-download" class="btn btn-primary" href="#download">Download RECALL</a>
+        <a class="btn" href="documentation.html">Read the documentation</a>
+      </div>
+      <p class="hero-meta">Free and open source · Runs locally, your contracts are never uploaded.</p>
     </div>
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">The RECALL Tool is maintained by (toto) Edson</a> and <a href="http://www.uel.br/pessoal/bonifacio/">Prof. Dr. Adilson Luiz Bonifácio</a></p>
-      </footer>
-    </div>
-  </body>
+  </div>
 
+  <main>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <h2>What is RECALL</h2>
+          <p>
+            Contracts play an important role in business, and with electronic trading came the challenge of
+            guaranteeing reliability between the parties. Automatically verifying multi-party contracts for
+            conflicts is still a problem that few works have addressed.
+          </p>
+          <p>
+            RECALL is an automatic conflict checker for multi-party contracts modeled in the
+            Relativized Contract Language (<strong>RCL</strong>). You describe each party's obligations, permissions
+            and prohibitions, and the tool tells you whether there is any situation in which they contradict each other.
+          </p>
+        </div>
+
+        <div class="grid grid-3">
+          <div class="card">
+            <div class="emoji">📝</div>
+            <h3>Single analysis</h3>
+            <p>Open an <code>.rcl</code> file or paste the contract into the editor. The editor includes a picker to insert language symbols.</p>
+          </div>
+          <div class="card">
+            <div class="emoji">📚</div>
+            <h3>Batch analysis</h3>
+            <p>Pick a folder and RECALL processes all contracts in parallel, producing a <code>batch_results.csv</code> summary.</p>
+          </div>
+          <div class="card">
+            <div class="emoji">🕸️</div>
+            <h3>Automaton export</h3>
+            <p>Export the contract automaton as <code>.dot</code> files (standard and/or minimal) to visualize with Graphviz.</p>
+          </div>
+          <div class="card">
+            <div class="emoji">📊</div>
+            <h3>Metrics and logs</h3>
+            <p>Each analysis reports time, automaton size and memory used, with quick access to the result, the full log and the table of symbols.</p>
+          </div>
+          <div class="card">
+            <div class="emoji">⚙️</div>
+            <h3>Optimization and limits</h3>
+            <p>Enable pruning for large contracts and tune the maximum number of concurrent relativized actions (default: 30).</p>
+          </div>
+          <div class="card">
+            <div class="emoji">🌗</div>
+            <h3>Light and dark themes</h3>
+            <p>A modern, lightweight interface that switches between light and dark themes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOWNLOAD -->
+    <section id="download">
+      <div class="container">
+        <div class="section-head">
+          <h2>Download RECALL</h2>
+          <p>Choose the installer for your operating system. All files are built automatically by GitHub Actions from the source code.</p>
+        </div>
+
+        <div class="grid grid-3">
+          <div class="card os-card" data-os="windows">
+            <div class="os-head"><h3>🪟 Windows</h3><span class="badge" hidden>Recommended</span></div>
+            <p class="os-sub">Windows 10 or later · 64-bit</p>
+            <div class="dl-list">
+              <a class="dl primary" href="https://github.com/adilsonbonifacio/recall-tauri/releases/download/v1.0.3/recall_1.0.3_x64-setup.exe">Installer (.exe) <small>3.5 MB</small></a>
+              <a class="dl" href="https://github.com/adilsonbonifacio/recall-tauri/releases/download/v1.0.3/recall_1.0.3_x64_en-US.msi">MSI package (.msi) <small>7.1 MB</small></a>
+            </div>
+          </div>
+
+          <div class="card os-card" data-os="mac">
+            <div class="os-head"><h3>🍎 macOS</h3><span class="badge" hidden>Recommended</span></div>
+            <p class="os-sub">Apple Silicon (M1, M2, M3 or M4)</p>
+            <div class="dl-list">
+              <a class="dl primary" href="https://github.com/adilsonbonifacio/recall-tauri/releases/download/v1.0.3/recall_1.0.3_aarch64.dmg">Disk image (.dmg) <small>8.4 MB</small></a>
+              <a class="dl" href="https://github.com/adilsonbonifacio/recall-tauri/releases/download/v1.0.3/recall_aarch64.app.tar.gz">Application (.app.tar.gz) <small>7.8 MB</small></a>
+            </div>
+            <p class="os-sub" style="margin:8px 0 0">See the <a href="#installation">step-by-step guide</a> for opening the app the first time.</p>
+          </div>
+
+          <div class="card os-card" data-os="linux">
+            <div class="os-head"><h3>🐧 Linux</h3><span class="badge" hidden>Recommended</span></div>
+            <p class="os-sub">x86_64 · pick the format for your distribution</p>
+            <div class="dl-list">
+              <a class="dl primary" href="https://github.com/adilsonbonifacio/recall-tauri/releases/download/v1.0.3/recall_1.0.3_amd64.deb">Debian/Ubuntu (.deb) <small>9.5 MB</small></a>
+              <a class="dl" href="https://github.com/adilsonbonifacio/recall-tauri/releases/download/v1.0.3/recall-1.0.3-1.x86_64.rpm">Fedora/RHEL (.rpm) <small>9.5 MB</small></a>
+              <a class="dl" href="https://github.com/adilsonbonifacio/recall-tauri/releases/download/v1.0.3/recall_1.0.3_amd64.AppImage">AppImage (universal) <small>86.9 MB</small></a>
+            </div>
+          </div>
+        </div>
+
+        <p class="release-note">
+          Version <strong>v1.0.3</strong>. All files and previous versions are on the
+          <a href="https://github.com/adilsonbonifacio/recall-tauri/releases/tag/v1.0.3" target="_blank" rel="noopener">releases page</a>.
+          The macOS package is for Apple Silicon only.
+        </p>
+      </div>
+    </section>
+
+    <!-- INSTALLATION -->
+    <section id="installation">
+      <div class="container">
+        <div class="section-head">
+          <h2>Installation</h2>
+          <p>On every system you just download and run the installer. On macOS there is one extra security step the first time you open the app.</p>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>🪟 Windows</h3>
+            <ol class="steps">
+              <li>Download and run the <code>.exe</code> file (or the <code>.msi</code>).</li>
+              <li>If SmartScreen warns about an unrecognized app, click <strong>More info</strong> and then <strong>Run anyway</strong>.</li>
+              <li>Follow the wizard and launch RECALL from the Start menu.</li>
+            </ol>
+          </div>
+          <div class="card">
+            <h3>🐧 Linux</h3>
+            <p>Install the package for your distribution, or run the AppImage without installing:</p>
+            <pre class="code" style="margin-top:0"><span class="c"># Debian / Ubuntu</span>
+sudo apt install ./recall_1.0.3_amd64.deb
+
+<span class="c"># Fedora / RHEL</span>
+sudo dnf install ./recall-1.0.3-1.x86_64.rpm
+
+<span class="c"># AppImage</span>
+chmod +x recall_1.0.3_amd64.AppImage
+./recall_1.0.3_amd64.AppImage</pre>
+          </div>
+        </div>
+
+        <h3 style="margin-top:40px">🍎 macOS: opening the app for the first time</h3>
+        <p>
+          The app is not signed by Apple, so macOS blocks the first launch.
+          Drag RECALL to the <em>Applications</em> folder, try to open it with a double click
+          (the block message will appear), then allow it:
+        </p>
+
+        <div data-tabs>
+          <div class="tabs" role="tablist">
+            <button class="tab" role="tab" aria-selected="true" aria-controls="mac-new">Sequoia, Sonoma and Ventura</button>
+            <button class="tab" role="tab" aria-selected="false" aria-controls="mac-old">Monterey or earlier</button>
+          </div>
+
+          <div class="tab-panel" id="mac-new" role="tabpanel">
+            <ol class="steps">
+              <li>Open <strong>System Settings</strong>.</li>
+              <li>In the left sidebar, click <strong>Privacy &amp; Security</strong>.</li>
+              <li>Scroll down on the right side to the <strong>Security</strong> section.</li>
+              <li>Below the "Allow applications downloaded from:" option, a message will tell you the app was blocked.</li>
+              <li>Click the <strong>Open Anyway</strong> button.</li>
+              <li>Enter your Mac password (or use Touch ID) to confirm.</li>
+            </ol>
+            <span class="path">System Settings › Privacy &amp; Security › Security › Open Anyway</span>
+          </div>
+
+          <div class="tab-panel" id="mac-old" role="tabpanel" hidden>
+            <p>On older versions of macOS the layout is slightly different:</p>
+            <span class="path">System Preferences › Security &amp; Privacy › "General" tab › Open Anyway</span>
+          </div>
+        </div>
+
+        <div class="callout">
+          <p>
+            <strong>Tip:</strong> the <em>Open Anyway</em> button only appears on that screen if you tried to open the app
+            within the last 15 minutes. If more time has passed, double-click the app again and the option will come back
+            in the settings.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="technology">
+      <div class="container">
+        <div class="section-head">
+          <h2>How it works</h2>
+          <p>
+            RECALL implements the conflict detection algorithm proposed by Della Mura and Bonifácio.
+            The contract written in RCL is parsed, turned into an automaton, and then analysed for conflicts
+            in all the decompositions obtained.
+          </p>
+        </div>
+
+        <div class="grid grid-2" style="align-items:center">
+          <figure>
+            <svg class="diagram" viewBox="0 0 770 440" role="img" aria-labelledby="diagram-title" xmlns="http://www.w3.org/2000/svg">
+  <title id="diagram-title">Diagram of RECALL modules: Contract Representation, Automaton Construction, Conflict Analysis and Desktop Application</title>
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M1 1 L9 5 L1 9" fill="none" stroke="var(--ink-3)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- tool boundary -->
+  <rect x="30" y="50" width="710" height="250" rx="20" fill="none" stroke="var(--line)" stroke-width="2" stroke-dasharray="6 6"/>
+  <text x="52" y="76" class="d-tag">RECALL TOOL</text>
+
+  <!-- flows inside the tool -->
+  <g class="d-flow" marker-end="url(#arr)">
+    <path d="M275 122 H493"/>
+    <path d="M605 154 V208"/>
+    <path d="M495 242 H277"/>
+    <path d="M165 210 V156"/>
+  </g>
+  <text x="385" y="112" class="d-label" text-anchor="middle">Contract</text>
+  <text x="619" y="186" class="d-label">Automaton state</text>
+  <text x="385" y="232" class="d-label" text-anchor="middle">Analysis result</text>
+  <text x="153" y="186" class="d-label" text-anchor="end">Contract in RCL</text>
+
+  <!-- modules -->
+  <g>
+    <rect x="55" y="90" width="220" height="64" rx="14" class="d-box"/>
+    <text x="165" y="117" class="d-title" text-anchor="middle">Contract Representation</text>
+    <text x="165" y="136" class="d-sub" text-anchor="middle">RCL syntax and parsing</text>
+
+    <rect x="495" y="90" width="220" height="64" rx="14" class="d-box"/>
+    <text x="605" y="117" class="d-title" text-anchor="middle">Automaton Construction</text>
+    <text x="605" y="136" class="d-sub" text-anchor="middle">Models the contract</text>
+
+    <rect x="495" y="210" width="220" height="64" rx="14" class="d-box"/>
+    <text x="605" y="237" class="d-title" text-anchor="middle">Conflict Analysis</text>
+    <text x="605" y="256" class="d-sub" text-anchor="middle">Searches every decomposition</text>
+
+    <rect x="55" y="210" width="220" height="64" rx="14" class="d-box d-main"/>
+    <text x="165" y="237" class="d-title d-on-main" text-anchor="middle">Desktop Application</text>
+    <text x="165" y="256" class="d-sub d-on-main" text-anchor="middle">Input, settings and results</text>
+  </g>
+
+  <!-- input / outputs -->
+  <g class="d-flow" marker-end="url(#arr)">
+    <path d="M115 366 V276"/>
+    <path d="M215 274 V346 H305 V364"/>
+    <path d="M250 274 V322 H495 V364"/>
+  </g>
+  <text x="127" y="332" class="d-label">input</text>
+  <text x="352" y="338" class="d-label" text-anchor="middle" dy="-4">output</text>
+
+  <g>
+    <rect x="40" y="366" width="150" height="48" rx="12" class="d-file"/>
+    <text x="115" y="396" class="d-file-t" text-anchor="middle">RCL File</text>
+    <rect x="230" y="366" width="150" height="48" rx="12" class="d-file"/>
+    <text x="305" y="396" class="d-file-t" text-anchor="middle">Analysis Result</text>
+    <rect x="420" y="366" width="150" height="48" rx="12" class="d-file"/>
+    <text x="495" y="396" class="d-file-t" text-anchor="middle">Automaton (.dot)</text>
+  </g>
+</svg>
+            <figcaption>The tool's modules and their relationships.</figcaption>
+          </figure>
+          <div>
+            <ul style="color:var(--ink-2); padding-left:1.2em; margin-top:0">
+              <li><strong>Contract Representation:</strong> receives the contract in RCL and converts it into the internal structure to be processed.</li>
+              <li><strong>Automaton Construction:</strong> builds the automaton that models the contract described in RCL.</li>
+              <li><strong>Conflict Analysis:</strong> looks for conflicts in all decompositions obtained during the automaton construction.</li>
+              <li><strong>Desktop Application:</strong> where the user provides the contract and the analysis settings and receives the result.</li>
+            </ul>
+            <p style="margin-top:1em">
+              This version was rewritten from scratch in <strong>Rust</strong> with <a href="https://tauri.app" target="_blank" rel="noopener">Tauri 2</a>
+              and a <strong>React + TypeScript</strong> interface. The grammar parser uses
+              <a href="https://docs.rs/pest/latest/pest/" target="_blank" rel="noopener">pest</a> and the analyser runs as a separate process (<em>sidecar</em>),
+              which keeps the interface responsive even during heavy analyses. The result is a small, fast app that
+              does not require a Java installation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUPPORT -->
+    <section id="support">
+      <div class="container">
+        <div class="section-head">
+          <h2>Documentation and support</h2>
+        </div>
+        <div class="grid grid-3">
+          <a class="card" href="documentation.html" style="color:inherit">
+            <h3>📖 Documentation</h3>
+            <p>How to use the app and the complete RCL syntax reference.</p>
+          </a>
+          <a class="card" href="examples.html" style="color:inherit">
+            <h3>🧪 Examples</h3>
+            <p>Sample contracts written in RCL to make the language easier to learn.</p>
+          </a>
+          <a class="card" href="https://github.com/adilsonbonifacio/recall-tauri/issues" target="_blank" rel="noopener" style="color:inherit">
+            <h3>🐞 Questions and bugs</h3>
+            <p>Found a problem or have a suggestion? Open an issue on GitHub.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>The RECALL Tool is maintained by <a href="https://github.com/adilsonbonifacio/">Edson Pilati</a> and <a href="mailto:adilsonbonifacio@gmail.com">Prof. Dr. Adilson Luiz Bonifácio</a>.</p>
+      <p><a href="https://github.com/adilsonbonifacio/recall-tauri" target="_blank" rel="noopener">Source code on GitHub</a></p>
+    </div>
+  </footer>
+
+</body>
 </html>
