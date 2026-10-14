@@ -1,57 +1,166 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="RECALL documentation: how to use the app and the RCL language reference.">
+  <title>Documentation - RECALL</title>
+  <link rel="stylesheet" href="stylesheets/stylesheet.css">
+  <script src="javascripts/main.js" defer></script>
+</head>
+<body>
 
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Recall-contracts : RelativizEd ContrAct Language anaLyser">
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-    <title>Recall - Relativized Contract Language Analyser</title>
-  </head>
-
-  <body>
-
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/recall-site/recall-site.github.io">View source code on GitHub</a>
-          <h1 id="project_title">RECALL</h1>
-          <h2 id="project_tagline">Relativized Contract Language Analyser</h2>
-
-            <section id="downloads">
-               <a class="bin_download_link"  href="https://github.com/recall-site/recall-site.github.io/raw/master/bin/recall-v1.0.zip">
-               Download RECALL tool
-               </a>
-            </section>
-        </header>
+  <header class="nav">
+    <div class="container">
+      <a class="brand" href="index.html"><span class="brand-mark">R</span> RECALL</a>
+      <button class="icon-btn menu-btn" aria-label="Open menu" aria-expanded="false">☰</button>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#installation">Installation</a>
+        <a href="documentation.html" aria-current="page">Documentation</a>
+        <a href="examples.html">Examples</a>
+        <button class="icon-btn" data-theme-toggle aria-label="Toggle theme">◐</button>
+        <a class="nav-cta" href="index.html#download">Download</a>
+      </nav>
     </div>
+  </header>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-         <h3>
-            <a id="intro" class="anchor" href="#intro" aria-hidden="true">
-            <span aria-hidden="true" class="octicon octicon-link"></span></a>
-            RECALL Documentation
-         </h3>
-         <p class="section-text">
-            Nowadays, contracts has an important role in business where trade relationships between different parties are dictated by legal rules.
-            The concept of electronic contracts has arisen mostly due to technological advances and most frequent practice of electronic trading between companies and customers.
-            Therewith new challenges have emerged to guarantee reliability between the stakeholders in the electronic negotiations.
-            The automatic verification of electronic contracts has arisen as a new challenge  especially in the task of detecting conflicts in multi-party contracts.
-            The problem of checking contracts has been largely addressed in the literature, but only few works have dealt with multi-party contracts.
-            The RECALL tool is an automatic checker for finding conflicts on multi-party contracts modeled by the relativized contract language.
-            The modeling and automatic checking of the contract  allow us to ascertain important results on its business model.
-         </p>
-      </section>
+  <div class="hero" style="padding:48px 0 36px">
+    <div class="container">
+      <h1 style="font-size:clamp(2rem,5vw,3rem)">Documentation</h1>
+      <p class="lead">How to use the app and write contracts in the RCL language.</p>
     </div>
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">The RECALL Tool is maintained by Edson</a> and <a href="http://www.uel.br/pessoal/bonifacio/">Prof. Dr. Adilson Luiz Bonifácio</a></p>
-      </footer>
-    </div>
-  </body>
-  <script type="text/javascript" src="javascripts/main.js"/></script>
+  </div>
 
+  <main>
+
+    <section id="usage">
+      <div class="container">
+        <div class="section-head">
+          <h2>Using the app</h2>
+          <p>The sidebar gives access to the <strong>Home</strong>, <strong>Analysis</strong>, <strong>Batch</strong> and <strong>Documentation</strong> screens.</p>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>📝 Single analysis</h3>
+            <ol class="steps">
+              <li>Open the <strong>Analysis</strong> tab.</li>
+              <li>Select an <code>.rcl</code> file from your computer <em>or</em> paste the contract into the editor.</li>
+              <li>Adjust the options (see below) and start the analysis.</li>
+              <li>Review the result and metrics, and open the log or generated files from the quick actions.</li>
+            </ol>
+            <p>The book icon next to the editor inserts language symbols at the cursor.</p>
+          </div>
+          <div class="card">
+            <h3>📚 Batch analysis</h3>
+            <ol class="steps">
+              <li>Open the <strong>Batch</strong> tab.</li>
+              <li>Choose a folder containing multiple <code>.rcl</code> files.</li>
+              <li>Set the global batch settings.</li>
+              <li>RECALL processes the files in parallel and writes a <code>batch_results.csv</code> summary in the same folder.</li>
+            </ol>
+          </div>
+        </div>
+
+        <h3 style="margin-top:40px">Analysis options</h3>
+        <div class="grid grid-3">
+          <div class="card">
+            <h3>Automaton export</h3>
+            <p>Choose <strong>don't export</strong> (fastest), the <strong>standard</strong> automaton, the <strong>minimal</strong> one (smaller and optimized) or <strong>both</strong>. Files are generated as <code>.dot</code>, the Graphviz format.</p>
+          </div>
+          <div class="card">
+            <h3>Pruning</h3>
+            <p>Applies aggressive pruning to reduce the model size. Recommended for large contracts.</p>
+          </div>
+          <div class="card">
+            <h3>Max concurrent actions</h3>
+            <p>Sets the maximum number of concurrent relativized actions (default: 30). Values that are too high can cause high memory usage or failures if system resources run out.</p>
+          </div>
+        </div>
+
+        <h3 style="margin-top:40px">Result</h3>
+        <p>When finished, RECALL reports whether the contract is conflict-free (<code>[CONFLICT-FREE]</code>) or, when there is a conflict, the state where it occurs, the state trace and the clauses involved. The result screen also shows execution time, automaton size and memory used, with shortcuts to the result, the full log, the <code>.dot</code> files and the table of symbols.</p>
+      </div>
+    </section>
+
+    <section id="rcl">
+      <div class="container">
+        <div class="section-head">
+          <h2>The RCL language</h2>
+          <p>
+            RCL (<em>Relativized Contract Language</em>) describes contracts between several parties through
+            <strong>obligations</strong>, <strong>permissions</strong> and <strong>prohibitions</strong> that can be
+            <em>relativized</em>: <code>{A,B}</code> means that A has the duty, permission or prohibition towards B.
+          </p>
+        </div>
+
+        <h3>Contract structure</h3>
+        <p>A contract starts with the declaration of the conflicts to check, followed by the clauses. Every item ends with <code>;</code>.</p>
+<pre class="code"><span class="c">/* block comments */  // or line comments</span>
+<span class="k">conflict</span>{
+   <span class="k">global</span>{(actionA,actionB), (actionC,actionD)};     <span class="c">// pairs of mutually exclusive actions</span>
+   <span class="k">relativized</span>{(actionE,actionF)};                   <span class="c">// same, considering the parties involved</span>
+};
+
+{partyA,partyB}O(action1);                      <span class="c">// A is obliged, towards B, to do action1</span>
+{partyA,partyB}P(action2);                      <span class="c">// A is permitted, towards B, to do action2</span>
+{partyB}F(action3);                             <span class="c">// B is forbidden from doing action3</span></pre>
+        <p>The <code>global</code> and <code>relativized</code> blocks are optional. Identifiers must start with a letter and may contain letters, digits and <code>_</code>.</p>
+
+        <h2 style="margin-top:48px">Symbol reference</h2>
+        <p>The same reference is available inside the app, via the book button of the editor on the <strong>Analysis</strong> screen.</p>
+
+        <div class="gram-group">
+          <h3>Contract Structure</h3>
+          <div class="gram-item"><code>conflict { ... };</code><div><strong>Conflict declaration</strong><span>Declares which actions should be checked as conflicting, globally and/or relative to the parties involved.</span></div></div>
+          <div class="gram-item"><code>;</code><div><strong>End of clause</strong><span>Terminates a clause or the conflict declaration. Every rule must end with it.</span></div></div>
+        </div>
+
+        <div class="gram-group">
+          <h3>Deontic Operators (Rules)</h3>
+          <div class="gram-item"><code>{A,B}O(action);</code><div><strong>Obligation</strong><span>A is obliged, relative to B, to perform "action". Use {A} instead of {A,B} for a non-relativized (global) obligation.</span></div></div>
+          <div class="gram-item"><code>{A,B}P(action);</code><div><strong>Permission</strong><span>A is permitted, relative to B, to perform "action".</span></div></div>
+          <div class="gram-item"><code>{A,B}F(action);</code><div><strong>Prohibition</strong><span>A is forbidden, relative to B, from performing "action".</span></div></div>
+          <div class="gram-item"><code>_/ clause /_</code><div><strong>Penalty</strong><span>Optional consequence attached to an obligation or prohibition: applies if it is violated. Written right after the O(...) or F(...) term.</span></div></div>
+        </div>
+
+        <div class="gram-group">
+          <h3>Dynamic Clause</h3>
+          <div class="gram-item"><code>{A,B}[β](clause);</code><div><strong>Dynamic update</strong><span>After the action sequence β happens, "clause" becomes the new rule, relative to A and B.</span></div></div>
+        </div>
+
+        <div class="gram-group">
+          <h3>Action Operators</h3>
+          <div class="gram-item"><code>+</code><div><strong>Choice</strong><span>"a+b" means: do a, or do b.</span></div></div>
+          <div class="gram-item"><code>.</code><div><strong>Sequence</strong><span>"a.b" means: do a, then do b.</span></div></div>
+          <div class="gram-item"><code>&amp;</code><div><strong>Concurrency</strong><span>"a&amp;b" means: do a and b at the same time.</span></div></div>
+          <div class="gram-item"><code>*</code><div><strong>Iteration</strong><span>Only valid inside a dynamic clause's [β]. "a*" means: repeat action a zero or more times.</span></div></div>
+          <div class="gram-item"><code>!</code><div><strong>Negation</strong><span>Only valid inside a dynamic clause's [β]. "!a" means: any action other than a.</span></div></div>
+          <div class="gram-item"><code>1</code><div><strong>Skip</strong><span>Represents an empty action (a no-op).</span></div></div>
+          <div class="gram-item"><code>0</code><div><strong>Violation</strong><span>Represents a violating action.</span></div></div>
+        </div>
+
+        <div class="gram-group">
+          <h3>Clause Connectors &amp; Literals</h3>
+          <div class="gram-item"><code>^  (or AND)</code><div><strong>Conjunction</strong><span>Combines clause terms that must all hold at the same time.</span></div></div>
+          <div class="gram-item"><code>|  (or OR)</code><div><strong>Disjunction</strong><span>Combines alternative prohibition terms.</span></div></div>
+          <div class="gram-item"><code>-  (or XOR)</code><div><strong>Exclusive alternative</strong><span>Combines alternative obligation/permission terms: exactly one applies.</span></div></div>
+          <div class="gram-item"><code>true</code><div><strong>True</strong><span>A clause term that always holds.</span></div></div>
+          <div class="gram-item"><code>false</code><div><strong>False</strong><span>A clause term that never holds.</span></div></div>
+        </div>
+
+        <p style="margin-top:28px">See complete contracts, with the analysis result, on the <a href="examples.html">examples</a> page.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>The RECALL Tool is maintained by <a href="https://github.com/adilsonbonifacio/">Edson Pilati</a> and <a href="mailto:adilsonbonifacio@gmail.com">Prof. Dr. Adilson Luiz Bonifácio</a>.</p>
+      <p><a href="https://github.com/adilsonbonifacio/recall-tauri" target="_blank" rel="noopener">Source code on GitHub</a></p>
+    </div>
+  </footer>
+
+</body>
 </html>

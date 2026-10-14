@@ -1,51 +1,125 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Example contracts written in RCL and analysed with RECALL.">
+  <title>Examples - RECALL</title>
+  <link rel="stylesheet" href="stylesheets/stylesheet.css">
+  <script src="javascripts/main.js" defer></script>
+</head>
+<body>
 
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Recall-contracts : RelativizEd ContrAct Language anaLyser">
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-    <title>Recall - Relativized Contract Language Analyser</title>
-  </head>
-
-  <body>
-
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/recallcontracts/recall">View source code on GitHub</a>
-          <h1 id="project_title">RECALL</h1>
-          <h2 id="project_tagline">Relativized Contract Language Analyser</h2>
-
-            <section id="downloads">
-               <a class="bin_download_link"  href="https://github.com/recallcontracts/recall/raw/master/bin/recall-v1.0.zip">
-               Download RECALL tool
-               </a>
-            </section>
-        </header>
+  <header class="nav">
+    <div class="container">
+      <a class="brand" href="index.html"><span class="brand-mark">R</span> RECALL</a>
+      <button class="icon-btn menu-btn" aria-label="Open menu" aria-expanded="false">☰</button>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#installation">Installation</a>
+        <a href="documentation.html">Documentation</a>
+        <a href="examples.html" aria-current="page">Examples</a>
+        <button class="icon-btn" data-theme-toggle aria-label="Toggle theme">◐</button>
+        <a class="nav-cta" href="index.html#download">Download</a>
+      </nav>
     </div>
+  </header>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-         <h3>
-            <a id="intro" class="anchor" href="#intro" aria-hidden="true">
-            <span aria-hidden="true" class="octicon octicon-link"></span></a>
-            Examples
-         </h3>
-         <p class="section-text">
-            ...
-         </p>
-      </section>
+  <div class="hero" style="padding:48px 0 36px">
+    <div class="container">
+      <h1 style="font-size:clamp(2rem,5vw,3rem)">Examples</h1>
+      <p class="lead">RCL contracts to open in RECALL and experiment with. Copy the text, paste it into the editor on the <strong>Analysis</strong> tab and run the analysis.</p>
     </div>
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">The RECALL Tool is maintained by Edson</a> and <a href="http://www.uel.br/pessoal/bonifacio/">Prof. Dr. Adilson Luiz Bonifácio</a></p>
-      </footer>
-    </div>
-  </body>
-  <script type="text/javascript" src="javascripts/main.js"/></script>
+  </div>
 
+  <main>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <h2>1. A contract with a conflict</h2>
+          <p>
+            We declare that <code>pay</code> and <code>cancel</code> are mutually exclusive actions, but the contract
+            obliges the buyer to perform both.
+          </p>
+        </div>
+<pre class="code"><span class="k">conflict</span>{
+   <span class="k">global</span>{(pay,cancel)};
+};
+
+{buyer,seller}O(pay);
+{buyer,seller}O(cancel);</pre>
+        <p>Analysis result:</p>
+<pre class="code">[CONFLICT] A conflict was found in the analyzed contract.
+
+Conflict found in state (s0)
+Conflict: O(buyer,pay,seller) conflicts with [O(buyer,cancel,seller)]
+Trace: (s0)</pre>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <h2>2. The Matrix: a dynamic contract</h2>
+          <p>
+            Morpheus offers Neo two choices: the red pill or the blue pill. His choice has consequences:
+            he can save the world or simply wake up in his bed remembering nothing.
+            If Neo fails to change the world, Smith will destroy the Matrix.
+          </p>
+          <p>
+            This example uses dynamic clauses (<code>[redPill](...)</code>), penalties (<code>_/ ... /_</code>),
+            conjunction (<code>^</code>), concurrent actions (<code>hideTrue&amp;forget</code>) and iteration (<code>[1*]</code>).
+          </p>
+        </div>
+<pre class="code"><span class="c">/*************************************************************************
+Morpheus offers to Neo two choices: Neo must choose between red or blue
+pill. His choice have implications that will make him wake up and he
+can save the World or will simply make him wake up in his bed and
+not remembering nothing.
+If Neo fails to change the World, Smith will destroy the Matrix.
+**************************************************************************/</span>
+<span class="k">conflict</span>{
+   <span class="k">global</span>{(showTrue,hideTrue), (redPill,bluePill)};
+};
+
+{neo,morpheus}[redPill](
+   {morpheus,neo}O(showTrue)^
+   {morpheus,neo}[showTrue](
+      {neo}O(saveWorld)_/
+         {smith}O(destroyMatrix)
+      /_
+   )
+);
+{neo,morpheus}[bluePill](
+   {morpheus,neo}O(hideTrue&amp;forget)^
+   {morpheus,neo}[hideTrue](
+      [1*]({neo}O(liveInIgnorance)) ^
+      {smith}O(destroyMatrix)
+   )
+);</pre>
+        <p>Analysis result:</p>
+<pre class="code">[CONFLICT-FREE] The analyzed contract is conflict-free.</pre>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <h2>More contracts</h2>
+          <p>A larger collection of RCL contracts is available in the project's examples repository.</p>
+        </div>
+        <a class="btn" href="https://github.com/recall-site/contracts/" target="_blank" rel="noopener">View examples repository ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>The RECALL Tool is maintained by <a href="https://github.com/adilsonbonifacio/">Edson Pilati</a> and <a href="mailto:adilsonbonifacio@gmail.com">Prof. Dr. Adilson Luiz Bonifácio</a>.</p>
+      <p><a href="https://github.com/adilsonbonifacio/recall-tauri" target="_blank" rel="noopener">Source code on GitHub</a></p>
+    </div>
+  </footer>
+
+</body>
 </html>
